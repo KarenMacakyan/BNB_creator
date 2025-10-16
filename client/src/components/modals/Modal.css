@@ -1,0 +1,144 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal {
+  background: var(--secondary);
+  border-radius: 16px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  outline: none;
+}
+
+.modal-content {
+  padding: 32px;
+}
+
+.modal-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.modal-description {
+  color: var(--light-gray);
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.role-selection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.role-card {
+  background: var(--dark);
+  border: 2px solid var(--gray);
+  border-radius: 12px;
+  padding: 32px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.role-card:hover:not(:disabled) {
+  border-color: var(--primary);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(243, 186, 47, 0.2);
+}
+
+.role-card:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.role-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 28px;
+}
+
+.brand-icon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: var(--white);
+}
+
+.creator-icon {
+  background: linear-gradient(135deg, var(--primary) 0%, #FCD535 100%);
+  color: var(--dark);
+}
+
+.role-card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.role-card p {
+  color: var(--light-gray);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.role-features {
+  list-style: none;
+  text-align: left;
+  color: var(--light-gray);
+}
+
+.role-features li {
+  padding: 8px 0;
+  border-top: 1px solid var(--gray);
+}
+
+.role-features li:first-child {
+  border-top: none;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: var(--light-gray);
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .role-selection {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    padding: 24px;
+  }
+}
+

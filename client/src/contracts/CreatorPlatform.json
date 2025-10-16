@@ -1,0 +1,91 @@
+[
+  {
+    "inputs": [],
+    "name": "campaignCounter",
+    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{"internalType": "string", "name": "_metadataURI", "type": "string"}],
+    "name": "createCampaign",
+    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {"internalType": "uint256", "name": "_campaignId", "type": "uint256"},
+      {"internalType": "address payable", "name": "_creator", "type": "address"},
+      {"internalType": "uint256", "name": "_amount", "type": "uint256"}
+    ],
+    "name": "createPayout",
+    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{"internalType": "uint256", "name": "_payoutId", "type": "uint256"}],
+    "name": "completePayout",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{"internalType": "uint256", "name": "_campaignId", "type": "uint256"}],
+    "name": "closeCampaign",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{"internalType": "uint256", "name": "_campaignId", "type": "uint256"}],
+    "name": "getCampaign",
+    "outputs": [
+      {"internalType": "uint256", "name": "id", "type": "uint256"},
+      {"internalType": "address", "name": "brand", "type": "address"},
+      {"internalType": "uint256", "name": "totalBudget", "type": "uint256"},
+      {"internalType": "uint256", "name": "remainingBudget", "type": "uint256"},
+      {"internalType": "uint256", "name": "prizePool", "type": "uint256"},
+      {"internalType": "uint256", "name": "createdAt", "type": "uint256"},
+      {"internalType": "bool", "name": "isActive", "type": "bool"},
+      {"internalType": "string", "name": "metadataURI", "type": "string"}
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {"indexed": true, "internalType": "uint256", "name": "campaignId", "type": "uint256"},
+      {"indexed": true, "internalType": "address", "name": "brand", "type": "address"},
+      {"indexed": false, "internalType": "uint256", "name": "totalBudget", "type": "uint256"},
+      {"indexed": false, "internalType": "uint256", "name": "prizePool", "type": "uint256"}
+    ],
+    "name": "CampaignCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {"indexed": true, "internalType": "uint256", "name": "payoutId", "type": "uint256"},
+      {"indexed": true, "internalType": "uint256", "name": "campaignId", "type": "uint256"},
+      {"indexed": true, "internalType": "address", "name": "creator", "type": "address"},
+      {"indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256"}
+    ],
+    "name": "PayoutCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {"indexed": true, "internalType": "uint256", "name": "payoutId", "type": "uint256"},
+      {"indexed": true, "internalType": "address", "name": "creator", "type": "address"},
+      {"indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256"},
+      {"indexed": false, "internalType": "uint256", "name": "platformFeeAmount", "type": "uint256"}
+    ],
+    "name": "PayoutCompleted",
+    "type": "event"
+  }
+]
+

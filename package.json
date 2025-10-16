@@ -1,0 +1,23 @@
+{
+  "name": "bnb-creator-platform",
+  "version": "1.0.0",
+  "description": "Платформа-посредник для создателей контента с оплатой в BNB",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server",
+    "contracts"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "cd client && npm start",
+    "server": "cd server && npm run dev",
+    "build": "cd client && npm run build",
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install && cd ../contracts && npm install",
+    "deploy-contract": "cd contracts && npx hardhat run scripts/deploy.js --network bsc_testnet"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+

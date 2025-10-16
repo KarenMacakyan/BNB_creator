@@ -16,33 +16,32 @@ const ProfilePage = () => {
   const isOwnProfile = account && address.toLowerCase() === account.toLowerCase();
 
   useEffect(() => {
-    fetchProfile();
+    const loadProfile = async () => {
+      try {
+        const response = await axios.get(`/api/users/profile/${address}`);
+        setUser(response.data.user);
+        
+        // Fetch stats if user is creator
+        if (response.data.user?.role === 'creator') {
+          try {
+            const statsResponse = await axios.get(`/api/creators/${address}/stats`);
+            setStats(statsResponse.data.stats);
+          } catch (error) {
+            console.error('Error fetching stats:', error);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (address) {
-      fetchStats();
+      loadProfile();
     }
   }, [address]);
 
-  const fetchProfile = async () => {
-    try {
-      const response = await axios.get(`/api/users/profile/${address}`);
-      setUser(response.data.user);
-    } catch (error) {
-      console.error('Error fetching profile:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchStats = async () => {
-    try {
-      if (user?.role === 'creator') {
-        const response = await axios.get(`/api/creators/${address}/stats`);
-        setStats(response.data.stats);
-      }
-    } catch (error) {
-      console.error('Error fetching stats:', error);
-    }
-  };
 
   if (loading) {
     return (

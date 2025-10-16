@@ -247,7 +247,7 @@ export const Web3Provider = ({ children }) => {
         window.ethereum.removeAllListeners('chainChanged');
       }
     };
-  }, []);
+  }, [connectWallet]);
 
   const value = {
     account,

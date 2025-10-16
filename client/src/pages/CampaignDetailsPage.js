@@ -14,33 +14,29 @@ const CampaignDetailsPage = () => {
   const [campaign, setCampaign] = useState(null);
   const [submissions, setSubmissions] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showSubmitModal, setShowSubmitModal] = useState(false);
+  // const [showSubmitModal, setShowSubmitModal] = useState(false);
 
   useEffect(() => {
-    fetchCampaignDetails();
-    fetchSubmissions();
+    const loadData = async () => {
+      try {
+        const [campaignResponse, submissionsResponse] = await Promise.all([
+          axios.get(`/api/campaigns/${id}`),
+          axios.get(`/api/submissions/campaign/${id}`)
+        ]);
+        setCampaign(campaignResponse.data.campaign);
+        setSubmissions(submissionsResponse.data.submissions);
+      } catch (error) {
+        console.error('Error loading data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      loadData();
+    }
   }, [id]);
 
-  const fetchCampaignDetails = async () => {
-    try {
-      const response = await axios.get(`/api/campaigns/${id}`);
-      setCampaign(response.data.campaign);
-    } catch (error) {
-      console.error('Error fetching campaign:', error);
-      toast.error('Error loading campaign');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchSubmissions = async () => {
-    try {
-      const response = await axios.get(`/api/submissions/campaign/${id}`);
-      setSubmissions(response.data.submissions);
-    } catch (error) {
-      console.error('Error fetching submissions:', error);
-    }
-  };
 
   const isOwner = campaign && account && campaign.brandWallet.toLowerCase() === account.toLowerCase();
 
